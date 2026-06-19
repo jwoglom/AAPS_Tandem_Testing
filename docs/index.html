@@ -60,8 +60,8 @@ Please read this entire documentation page before you start testing. Note that i
 		<li><a href="#powering-on-mobi">Powering on the Mobi</a></li>
 		<li><a href="#connection-setup">Connection setup</a></li>
 		<ol>
-			<li><a href="#a-using-shared-connection">A.) Using shared connection with controlX2</a></li>
-			<li><a href="#b-using-only-aaps">B.) Using only AAPS</a></li>
+			<li><a href="#b-using-only-aaps">A.) Connecting with AAPS (recommended)</a></li>
+			<li><a href="#a-using-shared-connection">B.) Using shared connection with controlX2</a></li>
 		</ol>
 		
 		<li><a href="#overview">Overview in MOBI tab</a></li>
@@ -115,11 +115,16 @@ If you have a brand new Mobi, or need to turn it on and get it out of "deep slee
 <h2 id="connection-setup">Connection setup</h2>
 
 <p>
-While there is an option currently to connect to the pump directly from AAPS (Option B below), I would like to remind you that the Mobi pump does not have a screen, and if something goes wrong, there are limited options for fixing the pump from within AAPS. To solve serious problems with the pump, you would either need the offical app (the "Tandem Mobi" app for iPhone, Android version expected by the end of Q1 2026) or ControlX2 in tandem to AAPS itself. 
+Since the Mobi pump does not have a screen, if something goes wrong, there are limited options for fixing the pump from within AAPS. To solve serious problems with the pump, you would either need the offical app (the "Tandem Mobi" app for iPhone or Android) or ControlX2 in tandem to AAPS itself. 
 </p>
 
 <p>
-Re-pairing the Mobi pump requires a wireless charger. <b>While testing Mobi with AAPS, you should have a wireless charger available at all times in case you need to re-pair, switch from being paired via AndroidAPS to the official Mobi app, or switch phones.</b> You can use any Qi compatible wireless charger, you do not need to exclusively use the "official" Tandem wireless charging pad. Note that while MagSafe chargers do work, you should avoid bringing the pump cartridge area into contact with the magnets to avoid potential damage to the piston.
+Re-pairing the Mobi pump requires a wireless charger. <b>While testing Mobi with AAPS, you should have a wireless charger available at all times in case you need to re-pair, switch from being paired via AndroidAPS to the official Mobi app, or switch phones.</b> 
+You can use any Qi compatible wireless charger, you do not need to exclusively use the "official" Tandem wireless charging pad. Note that while MagSafe chargers do work, you should avoid bringing the pump cartridge area into contact with the magnets to avoid potential damage to the piston.
+</p>
+
+<p>
+If you need a portable wireless charger, one option is the <a href="https://www.amazon.com/dp/B0F5B7Z28G" target="_blank">Baseus Picogo Power Bank</a> which claims to be the "Smallest Qi2 Certified 15W MagSafe Portable Charger" on Amazon in the US.
 </p>
 
 <p><a href="https://github.com/jwoglom/controlX2" target="_blank">ControlX2</a> is a small, open-source Android app created by @jwoglom, one of the co-authors of this integration, which can monitor your pump, issue Bolus, TBR, and modify (nearly) all pump settings. Newer versions were extended with Mobi specific commands and requirements (change cartridge, fill cannula, etc), some of which we directly use in this driver.
@@ -132,7 +137,34 @@ Importantly, ControlX2 is designed to issue any supported command to the pump di
 Once the pump is configured and AAPS is running, <b>the AAPS connection to the Mobi is 24/7</b>: we never disconnect from the pump. This mirrors how the official app works and the Mobi is designed for this behavior with Bluetooth Low-Energy.
 </p>
 
-<h3 id="a-using-shared-connection">A.) Using shared connection with controlX2</h3>
+
+
+<h3 id="b-using-only-aaps">A.) Using only AAPS</h3>
+
+
+<p>
+To pair natively with the Mobi and AAPS, select Tandem Mobi as your pump in the Config Builder or initial AAPS setup wizard.
+</p>
+
+<p>
+After enabling the Mobi pump driver, force quit and re-launch AAPS or restart your phone (this is a temporary workaround). Then go to the "TANDEM MOBI" AAPS tab and open the "..." menu to select "Tandem Mobi Preferences" followed by "Tandem Pump Connection Wizard."
+</p>
+
+<p>
+The pairing wizard should guide you through the necessary steps. See the tips listed above in case your Mobi is not detected, or see the video below.
+</p>
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wsXEqxq8lGg?si=_dJgX8SW_7qELPxx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+<hr>
+<br>
+
+
+
+
+<h3 id="a-using-shared-connection">B.) Using shared connection with controlX2</h3>
 
 <p>
 If connecting with ControlX2, start by first setting it up on your device. Install the latest available release at <a href="https://github.com/jwoglom/controlX2/releases">https://github.com/jwoglom/controlX2/releases</a> (1.0.0-20251224 at time of writing this documentation).
@@ -194,30 +226,6 @@ In AAPS, select Tandem Mobi as the pump and go to Configuration. Enable &quot;Us
 
 
 
-
-<h3 id="b-using-only-aaps">B.) Using only AAPS</h3>
-<p>
-Please note that the AAPS native pairing option is a new addition to the Mobi pump driver and is not as reliable as the ControlX2 pairing mode yet.
-</p>
-
-<p>
-To pair using only AAPS, select Tandem Mobi as your pump in the Config Builder or initial AAPS setup wizard.
-</p>
-
-<p>
-After enabling the Mobi pump driver, force quit and re-launch AAPS or restart your phone. Then go to the "TANDEM MOBI" AAPS tab and open the "..." menu to select "Tandem Mobi Preferences" followed by "Tandem Pump Connection Wizard."
-</p>
-
-<p>
-The pairing wizard should guide you through the necessary steps. See the tips listed above in case your Mobi is not detected, or see the video below.
-</p>
-
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wsXEqxq8lGg?si=_dJgX8SW_7qELPxx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-<hr>
-<br>
 
 <h2 id="overview">Overview of the Tandem Mobi tab</h2>
 
